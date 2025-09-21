@@ -247,7 +247,8 @@ Parent Component Did Mounted
 - Installed Babel dependencies
 - configure Babel
 - Configure Parcel Config file to disable default babel transpilation
-
+- Jest configuration 
+- install jsdom library
 
 
 
