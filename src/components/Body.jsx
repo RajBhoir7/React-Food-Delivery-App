@@ -1,6 +1,6 @@
 import reslistobj from "../utils/mockdata";
-import RestaurantCard,{withPromotedLabel} from "./RestaurantCard";
-import { useState, useEffect,useContext } from "react";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -10,7 +10,7 @@ const Body = () => {
     const [ListofResto, setListofResto] = useState([]);
     const [filterRestaurant, setfilterRestaurant] = useState([])
     const [searchText, setSearchText] = useState([""]);
-    const { loggedInUser, setuserName } = useContext(UserContext);  
+    const { loggedInUser, setuserName } = useContext(UserContext);
 
     const RestaurantCardPromoted = withPromotedLabel(RestaurantCard)
 
@@ -37,8 +37,8 @@ const Body = () => {
             <h3>Looks like you're offline...</h3>
         </div>)
     };
-// if (ListofResto.length == 0)
-     if (ListofResto.length == 0){
+    // if (ListofResto.length == 0)
+    if (ListofResto.length == 0) {
         return <Shimmer />
     }
 
@@ -50,41 +50,39 @@ const Body = () => {
             <div className="flex h-24 items-center">
 
                 <div className="search m-4 p-4 flex items-center">
+
+
                     <button className="px-4 py-2 bg-gray-100 rounded-lg"
                         onClick={() => {
                             const FilterListofResto = ListofResto.filter(
                                 (res) => res.info.avgRating > 4
                             );
-                            setListofResto(FilterListofResto);
-                            // console.log(ListofResto);
+                            setfilterRestaurant(FilterListofResto);
+                            console.log(FilterListofResto);
                         }
                         }>Top Rated Restaurant</button></div>
 
 
                 <div className="search m-4 p-4">
-                <input type="text" className="border border-solid border-black" value={searchText} onChange={(e) => { setSearchText(e.target.value) }} />
-                <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={() => {
-                    const filterRestaurant = ListofResto.filter((res) =>
-                        res.info.name.toLowerCase().includes(searchText.toLowerCase()));
-                    setfilterRestaurant(filterRestaurant);
-                }}>search</button>
+                    <input type="text"
+                        data-testid="searchInput"
+                        className="border border-solid border-black" value={searchText} onChange={(e) => { setSearchText(e.target.value) }} />
+                    <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={() => {
+                        const filterRestaurant = ListofResto.filter((res) =>
+                            res.info.name.toLowerCase().includes(searchText.toLowerCase()));
+                        setfilterRestaurant(filterRestaurant);
+                    }}>search</button>
 
                 </div>
 
                 <div className="m-4 p-4 flex items-center">
                     <label className="p-1">UserName:</label>
-                    <input type="text" className="border border-black" value={loggedInUser} 
-                    onChange={(e)=>{
-                        setuserName(e.target.value)
-                    }}
+                    <input type="text" className="border border-black" value={loggedInUser}
+                        onChange={(e) => {
+                            setuserName(e.target.value)
+                        }}
                     />
                 </div>
-
-
-
-
-
-
 
 
             </div>
@@ -93,12 +91,12 @@ const Body = () => {
                     <Link key={restaurant.info.id} to={"/RestaurantMenu/" + restaurant.info.id}>
 
                         {restaurant.info.avgRating > 4.3 ? (
-                            <RestaurantCardPromoted resdata={restaurant}/>
+                            <RestaurantCardPromoted resdata={restaurant} />
                         ) : (
-                           <RestaurantCard resdata={restaurant} /> 
+                            <RestaurantCard resdata={restaurant} />
                         )
-                    }
-                        
+                        }
+
                     </Link>
 
                 ))}

@@ -10,7 +10,7 @@ describe("Header test Cases",()=>{
 
 
 it("Should Render Header Component with a login button",()=>{
-    render(<BrowserRouter>
+    render(<BrowserRouter>-1    
         <Provider store={appStore}>    
             <Header/>
         </Provider>
@@ -44,6 +44,8 @@ it("Should Change Login Button to Logout on Click",()=>{
     expect(logoutButton).toBeInTheDocument();
     
 })
+
+
 
 
 

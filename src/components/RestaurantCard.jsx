@@ -15,7 +15,9 @@ const RestaurantCard = (props) => {
 
     } = resdata?.info;
     return (
-        <div className=" m-4 p-4 w-63 bg-gray-300 rounded-lg h-105">
+        <div
+        data-testid = "resCard"
+        className=" m-4 p-4 w-63 bg-gray-300 rounded-lg h-105">
             <img className="res-logo" alt="logo" src={CDN_URL+resdata.info.cloudinaryImageId}></img>
 
             <h3>{name}</h3>
